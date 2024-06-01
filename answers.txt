@@ -1,0 +1,75 @@
+---Q1---
+a.
+x is at first defined as x.
+foo function is called.
+inside the foo function x is now redefined as 2.
+foo function returns () => console.log(x) function.
+The function that is just returned is called again because foo()().
+And the function runs console.log(x). // This prints 2.
+then the last statement 'console.log(x)' is executed. // This again prints 2.
+
+b.
+'items' are defined with 'var' as an array with elements 1,2,3.
+'result' is defined with 'var' as an empty array.
+
+for loop is executed 3 times.
+Each time it inserts an anonymous function that returns an element of 'items' at index i.
+This makes 'result' to be now [() => item[i],() => item[i],() => item[i]].
+When 'i' turns 3, it escapes the foor loop.
+
+The program grabs each function of 'result' array and puts it in a variable x, for each x, it calls it. 
+'i' was initially defined with 'var'. So 'i' is 3. 
+items[3] returns undefined each time.
+The program replaces every element of result with the returned value of each function call which is 'undefined'.
+Now result is [undefined, undefined, undefined]
+console.log prints the result.
+
+c.
+If we declare the i with let, then when the program escapes the for loop, i is no longer 3.
+
+When the map function is called '() => items[i]', the i is the value of i at the time of the function's creation: This returns item[0], item[1], item[2].
+Therefore it is [1,2,3].
+
+d.
+items is an array of elements 1,2,3.
+result is an empty array.
+
+x => () => items[x] is a function that receives x and returns a function () => items[x] x being whatever the value is when the function is created.
+
+and this function is called with i.
+So this returns a function () => items[i];
+
+i is passed as a parameter, so unlike i that is declared with i, it is now a local variable. therefore it is result = [() => items[0], () => items[1], () => items[2]]
+
+so when it is called with map, it is now [1,2,3].
+
+
+---Q2---
+a.
+resolveafter2Seconds is executed printing 'staring slow promise' it runs the statement of setTimeout. This is finish running after 2 seconds. and the console.log part will run. resolve("slow") is not handled in this example but it is resolved.
+
+Similarly resolveAfter1Second will be executed right now prining 'starting fast promise'. it runs the statement of setTimeout which will fire after 1 second printing fast promise is done. right before that it will resolved to fast.
+
+b.
+resolveAfter2Seconds2 is not defined. so the program crashes.
+
+if it is resolveAfter2Seconds, then the fast promise runs first and then the slow promise runs secondly. then it prints done. 
+both setTimeout is executed and 1 second one is done faster, so it prints 'fast promise is done' then 1 second later the 'slow promise is done' is printed. 
+in both cases, they are resolved but it is not visible on the terminal.
+
+
+c.
+inside global scope, i cannot use await.
+If i make an async function and run it in the globally,
+then it will execute the resolveAfter2Seconds but it will wait until this function call is finished. firstly it prints the starting message and then after 2 seconds when it is resolved, it will allow the program to go to the next function resolveAfter1Second function call. This will print starting message. but this function call will not wait, so 'done!' message will be printed first. then when the 1 second time is up, it will resolve and also print the "fast promise is done" message.
+
+---Q3---
+a.
+<need to run it as an function>
+
+
+b.
+
+
+c.
+
